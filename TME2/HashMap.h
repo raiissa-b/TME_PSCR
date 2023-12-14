@@ -9,7 +9,6 @@ namespace pr{
 
     template<typename K, typename V>
     class HashMap {
-
     
         public : 
 
@@ -100,7 +99,8 @@ public :
             iterator(const typename bucketsType::iterator & bEnd
                     ,const typename bucketsType::iterator & vit
                     ,const typename std::forward_list<Entry>::iterator & lit ):
-                    bucketsEnd(bEnd), vit(vit), lit(lit) {}
+                    bucketsEnd(bEnd), vit(vit), lit(lit) 
+            {}
 
             iterator & operator++(){
 
@@ -112,7 +112,7 @@ public :
                         ++vit;
                     }
                     //si on est sorti on a soit trouvé une case  non vide soit la fin du buckets
-                    if( vit != bucketsEnd){
+                    if( vit != bucketsEnd){//si pas fin du buckets 
                         lit = vit->begin(); //lit devient la tête de cette liste
                     }
                 }
@@ -121,7 +121,8 @@ public :
             }
 
             bool operator!=(const iterator &other){
-
+                
+                //test égalité 
                 return (vit != other.vit ) || ( lit != other.lit);
 
             }
@@ -152,6 +153,8 @@ public :
 
             iterator end(){
                 return iterator(buckets.end(), buckets.end(), buckets.front().end());
+                //buckets.front => 1er elmtn = forward list <Entry> ...
+
             }
         
 
